@@ -252,3 +252,13 @@ describe("pseudo classes", () => {
         expect(result.includes("row:after") === true).toBe(false)
     })
 })
+
+describe("ignore :not selectors", () => {
+    const content = read("not_selector/not_selector.html"),
+        css = read("not_selector/not_selector.css"),
+        result = purify(content, css)
+
+    it("finds .grid:not(.unused)", () => {
+        expect(result.includes(".grid:not(.unused)") === true).toBe(true)
+    })
+})
